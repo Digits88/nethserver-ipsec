@@ -1,6 +1,6 @@
 Summary: NethServer IPsec-based VPN configuration
 Name: nethserver-ipsec
-Version: 1.1.5
+Version: 1.1.7
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jun 06 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.7-1
+- ipsec tunnel restart blocks udp traffic - Enhancement #3393 [NethServer]
+
 * Thu Feb 18 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.1.5-1
 - IPsec tunnels with PPPoE - Enhancement #3339 [NethServer]
 
