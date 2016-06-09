@@ -1,10 +1,6 @@
 #
 # 20policy_ipsec
 #
-lvpn     loc     ACCEPT    
-loc	 lvpn	 ACCEPT    
-lvpn	 $FW	 ACCEPT    
-$FW	 lvpn	 ACCEPT
 $FW      ivpn    ACCEPT    
 loc      ivpn    ACCEPT
 ivpn     loc     ACCEPT
@@ -15,10 +11,8 @@ ivpn     $FW     ACCEPT
 
     if (defined($ndb->blue())) {
         $OUT .= "ivpn        blue           ACCEPT\n";
-        $OUT .= "lvpn        blue           ACCEPT\n";
     }
     if (defined($ndb->orange())) {
         $OUT .= "ivpn        orang          ACCEPT\n";
-        $OUT .= "lvpn        orang          ACCEPT\n";
     }
 }

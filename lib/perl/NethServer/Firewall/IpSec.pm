@@ -25,31 +25,7 @@ use NethServer::Firewall qw(register_callback);
 use esmith::DB::db;
 use esmith::util;
 
-register_callback(\&ipsec_networks);
 register_callback(\&ipsec_tunnels);
-
-#
-# Search inside L2TP network
-#
-sub ipsec_networks
-{
-    my $value = shift;
-
-    my $config_db = esmith::DB::db->open_ro('configuration');
-    if( ! $config_db ) {
-        return;
-    }
-
-    my $net = $config_db->get_prop('ipsec', 'L2tpNetwork') || return '';
-    my $msk = $config_db->get_prop('ipsec', 'L2tpNetmask') || return '';
-
-    my $cidr = esmith::util::computeLocalNetworkShortSpec($net, $msk);
-    if (Net::IPv4Addr::ipv4_in_network($cidr, $value)) {
-        return 'lvpn';
-    }
-
-    return '';
-}
 
 #
 # Search inside IPsec tunnel network

@@ -1,7 +1,6 @@
 #
 # 30ipsec
 #
-# VPN hosts are added dynamically by pppd scripts to lvpn zone
 # 
 {
     use esmith::NetworksDB;
@@ -17,4 +16,3 @@
         $OUT .= sprintf("ivpn %12s:0.0.0.0/0", $greenRecord->key);
     }
 }
-lvpn         ppp+:dynamic

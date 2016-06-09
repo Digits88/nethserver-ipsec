@@ -37,7 +37,6 @@ rm -rf %{buildroot}
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
 %config %attr (0440,root,root) %{_sysconfdir}/sudoers.d/20_nethserver_ipsec
-%config %attr (0600,root,root) %{_sysconfdir}/ipsec.d/nsspassword
 %config %ghost %attr (0644,root,root) %{_sysconfdir}/ipsec.d/tunnels.conf
 %config %ghost %attr (0600,root,root) %{_sysconfdir}/ipsec.d/tunnels.secrets
 

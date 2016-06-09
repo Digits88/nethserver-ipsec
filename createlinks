@@ -28,21 +28,15 @@ use esmith::Build::CreateLinks  qw(:all);
 #
 event_actions('nethserver-ipsec-update', qw( 
     initialize-default-databases 00
-    nethserver-ipsec-synchronize-nssdb 30
 ));
 
 event_templates('nethserver-ipsec-update', qw(
     /etc/ipsec.d/tunnels.conf
-    /etc/ipsec.d/l2tp.conf
     /etc/ipsec.d/tunnels.secrets
-    /etc/xl2tpd/xl2tpd.conf
-    /etc/ppp/options.xl2tpd
-    /etc/ipsec.d/nsspassword
 ));
 
 event_services('nethserver-ipsec-update', qw(
     ipsec restart
-    xl2tpd restart
     rsyslog restart
 ));
 
@@ -51,50 +45,15 @@ event_services('nethserver-ipsec-update', qw(
 #
 event_templates('nethserver-ipsec-save', qw(
     /etc/ipsec.d/tunnels.conf
-    /etc/ipsec.d/l2tp.conf
     /etc/ipsec.d/tunnels.secrets
-    /etc/xl2tpd/xl2tpd.conf
-    /etc/ppp/options.xl2tpd
 ));
 
 event_services('nethserver-ipsec-save', qw(
     ipsec restart
-    xl2tpd restart
 ));
 
 event_actions('nethserver-ipsec-save', qw(
     firewall-adjust 40
     trusted-networks-modify 95
-));
-
-#
-# Event certificate-update 
-#
-event_actions('certificate-update', qw(
-    nethserver-ipsec-synchronize-nssdb 30
-));
-
-
-#
-# Event nethserver-samba-save
-#
-event_actions('nethserver-samba-save', qw(
-   nethserver-ipsec-synchronize-l2tpusers 97
-));
-
-
-#
-# Event nethserver-vpn-save
-#
-event_actions('nethserver-vpn-save', qw(
-   nethserver-ipsec-synchronize-l2tpusers 30   
-));
-
-
-#
-# FIXME event runlevel-adjust
-#
-event_actions('runlevel-adjust', qw(
-    nethserver-ipsec-synchronize-l2tpusers 98
 ));
 

@@ -25,31 +25,7 @@ use NethServer::TrustedNetworks qw(register_callback);
 use esmith::DB::db;
 use esmith::util;
 
-register_callback(\&ipsec_networks);
 register_callback(\&ipsec_tunnels);
-
-#
-# Push IPsec L2TP network
-#
-sub ipsec_networks
-{
-    my $results = shift;
-
-    my $config_db = esmith::DB::db->open_ro('configuration');
-    if( ! $config_db ) {
-        return;
-    }
-
-    my $net = $config_db->get_prop('ipsec', 'L2tpNetwork') || '';
-    my $msk = $config_db->get_prop('ipsec', 'L2tpNetmask') || '';
-
-    my $cidr = esmith::util::computeLocalNetworkShortSpec($net, $msk);
-
-    if($cidr) {
-        push(@$results, {'cidr' => $cidr, 'provider' => 'IPsec'});
-    }
-
-}
 
 #
 # Push IPsec tunnel network
