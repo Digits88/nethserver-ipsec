@@ -7,8 +7,8 @@ URL: %{url_prefix}/%{name}
 Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch
 
-Requires: openswan, xl2tpd
-Requires: nethserver-firewall-base, nethserver-vpn, nethserver-samba
+Requires: openswan
+Requires: nethserver-firewall-base, nethserver-vpn
 
 BuildRequires: nethserver-devtools 
 
@@ -39,7 +39,6 @@ rm -rf %{buildroot}
 %config %attr (0440,root,root) %{_sysconfdir}/sudoers.d/20_nethserver_ipsec
 %config %attr (0600,root,root) %{_sysconfdir}/ipsec.d/nsspassword
 %config %ghost %attr (0644,root,root) %{_sysconfdir}/ipsec.d/tunnels.conf
-%config %ghost %attr (0644,root,root) %{_sysconfdir}/ipsec.d/l2tp.conf
 %config %ghost %attr (0600,root,root) %{_sysconfdir}/ipsec.d/tunnels.secrets
 
 
